@@ -44,6 +44,10 @@ namespace WeatherAPP
             style.SetImg(WeatherConditionImg);
             style.ShowTemperatureInfo(Temperature);
             style.ShowWeatherConditionInfo(WeatherCondition);
+            style.ShowImgWindRain(WindSpeed, RainChance);
+            style.ShowWindRainInfo(WindInfo, RainInfo);
+            style.SetComboBox(CityList);
+            style.ShowLocationImg(LocationImg);
         }
     }
 }

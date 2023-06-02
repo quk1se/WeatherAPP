@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WeatherAPP"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="547">
-    <Grid Margin="0,3,0,-250" RenderTransformOrigin="0.501,0.433" Width="580" Height="820">
+        Title="MainWindow" Height="767" Width="547">
+    <Grid Margin="0,0,0,-6" RenderTransformOrigin="0.501,0.433">
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="0*"/>
@@ -18,10 +18,16 @@
             <ColumnDefinition Width="0*"/>
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
-        <TextBlock x:Name="DateInfo" HorizontalAlignment="Left" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="222" Width="220" Grid.Column="1" TextAlignment="Center" Margin="175,-88,0,0"/>
-        <Image x:Name="WeatherConditionImg" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="174" Margin="197,23,0,0" VerticalAlignment="Top" Width="175"/>
-        <TextBlock x:Name="Temperature" HorizontalAlignment="Left" Margin="213,197,0,0" TextWrapping="Wrap" Text="Temperature" VerticalAlignment="Top" Height="71" Width="174" Grid.Column="1"/>
-        <TextBlock x:Name="WeatherCondition" HorizontalAlignment="Left" Margin="157,256,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="66" Width="262" Grid.Column="1"><Run Text="WeatherCondition"/><LineBreak/><Run/></TextBlock>
+        <TextBlock x:Name="DateInfo" HorizontalAlignment="Left" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="222" Width="220" Grid.Column="1" TextAlignment="Center" Margin="180,21,0,0"/>
+        <Image x:Name="WeatherConditionImg" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="174" Margin="203,131,0,0" VerticalAlignment="Top" Width="175"/>
+        <TextBlock x:Name="Temperature" HorizontalAlignment="Left" Margin="226,305,0,0" TextWrapping="Wrap" Text="Temperature" VerticalAlignment="Top" Height="72" Width="174" Grid.Column="1"/>
+        <TextBlock x:Name="WeatherCondition" HorizontalAlignment="Left" Margin="157,365,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="90" Width="262" Grid.Column="1"><Run Text="WeatherCondition"/><LineBreak/><Run/></TextBlock>
+        <Image x:Name="WindSpeed" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="60" Margin="34,377,0,0" VerticalAlignment="Top" Width="60"/>
+        <Image x:Name="RainChance" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="60" Margin="479,377,0,0" VerticalAlignment="Top" Width="60"/>
+        <TextBlock x:Name="WindInfo" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="50" Margin="17,443,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="95"><Run Text="WindSpeedInfo"/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
+        <TextBlock x:Name="RainInfo" Grid.ColumnSpan="4" HorizontalAlignment="Left" Margin="461,443,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="96"><Run Text="RainChanceInfo"/><LineBreak/><Run/></TextBlock>
+        <ComboBox x:Name="CityList" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="48,21,0,0" VerticalAlignment="Top" Width="120"/>
+        <Image x:Name="LocationImg" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="25" Margin="13,19,0,0" VerticalAlignment="Top" Width="25"/>
 
     </Grid>
 </Window>
