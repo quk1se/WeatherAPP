@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WeatherAPP"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="547">
-    <Grid Margin="0,3,0,-250" RenderTransformOrigin="0.501,0.433" Width="580" Height="817">
+    <Grid Margin="0,3,0,-250" RenderTransformOrigin="0.501,0.433" Width="580" Height="820">
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="0*"/>
@@ -18,7 +18,10 @@
             <ColumnDefinition Width="0*"/>
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
-        <TextBlock x:Name="DateInfo" Grid.ColumnSpan="2" HorizontalAlignment="Left" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="223" Width="220" Margin="10,-65,0,0"/>
+        <TextBlock x:Name="DateInfo" HorizontalAlignment="Left" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="222" Width="220" Grid.Column="1" TextAlignment="Center" Margin="175,-88,0,0"/>
+        <Image x:Name="WeatherConditionImg" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="174" Margin="197,23,0,0" VerticalAlignment="Top" Width="175"/>
+        <TextBlock x:Name="Temperature" HorizontalAlignment="Left" Margin="213,197,0,0" TextWrapping="Wrap" Text="Temperature" VerticalAlignment="Top" Height="71" Width="174" Grid.Column="1"/>
+        <TextBlock x:Name="WeatherCondition" HorizontalAlignment="Left" Margin="157,256,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="66" Width="262" Grid.Column="1"><Run Text="WeatherCondition"/><LineBreak/><Run/></TextBlock>
 
     </Grid>
 </Window>

@@ -30,16 +30,20 @@ namespace WeatherAPP
         }
         public void StartAPP()
         {
-            #region Title icon
-            #endregion
             #region Window style
             this.Width = 580;
             this.Height = 820;
             this.Icon = new BitmapImage(new Uri(@"D:\appIcons\iconApp\icon.ico", UriKind.RelativeOrAbsolute));
             this.Title = "Weather APP";
+            this.ResizeMode = ResizeMode.NoResize;
             #endregion
             style = new Style(this);
-
+            style.ShowDate(DateInfo);
+            style.SetBackground();
+            style.GetInfoAboutWeather();
+            style.SetImg(WeatherConditionImg);
+            style.ShowTemperatureInfo(Temperature);
+            style.ShowWeatherConditionInfo(WeatherCondition);
         }
     }
 }
