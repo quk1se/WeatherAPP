@@ -17,8 +17,8 @@ namespace WeatherAPP
 {
     internal class Style
     {
-        private List<string> cityList = new List<string>() {"Kiev", "Kharkov", "Odessa", "Dnepropetrovsk", "Donetsk", "Lviv", "Zaporozhye", "Kryvyi Rih", "Sevastopol", "Nikolaev", "Mariupol",
-        "Luhansk", "Makeevka", "Simferopol", "Chernihiv", "Poltava", "Kherson", "Cherkasy"};
+        public List<string> cityList = new List<string>() {"Kiev", "Kharkov", "Odessa", "Dnepropetrovsk", "Donetsk", "Lviv", "Zaporozhye", "Kryvyi Rih", "Sevastopol", "Nikolaev", "Mariupol",
+        "Luhansk", "Makeevka", "Simferopol", "Chernihiv", "Poltava", "Kherson", "Cherkasy","asdas"};
         private string weatherCondition;
         private int temperature;
         private int windSpeed;
@@ -44,7 +44,7 @@ namespace WeatherAPP
         DateTime dt = DateTime.Now;
         HttpClient client = new HttpClient();
         public MainWindow parent;
-        public string city = "Lugansk";
+        public string city = "Kiev";
 
         public string WeatherCondition
         {
@@ -165,6 +165,10 @@ namespace WeatherAPP
                 case "Overcast":
                     image = overcast;
                     break;
+                case "Light rain":
+                    if (dt.Hour >= 22 && dt.Hour < 5) image = drizzleMoon;
+                    else image = overcast;
+                    break;
                 case "Mist":
                     if (dt.Hour >= 22 && dt.Hour < 5) image = mistMoon;
                     else image = mist;
@@ -208,11 +212,13 @@ namespace WeatherAPP
             HttpResponseMessage response = client.GetAsync(apiUrl).Result;
             string jsonResponse = response.Content.ReadAsStringAsync().Result;
             JsonDocument doc = JsonDocument.Parse(jsonResponse);
-            WeatherCondition = doc.RootElement.GetProperty("current").GetProperty("condition").GetProperty("text").GetString();
+
+            try { WeatherCondition = doc.RootElement.GetProperty("current").GetProperty("condition").GetProperty("text").GetString(); }
+            catch (System.Collections.Generic.KeyNotFoundException ex) { MessageBox.Show("Invalid name of city!"); return; }
+
             Temperature = (int)doc.RootElement.GetProperty("current").GetProperty("temp_c").GetSingle();
             Humidity = (int)doc.RootElement.GetProperty("current").GetProperty("humidity").GetSingle();
             WindSpeed = (int)doc.RootElement.GetProperty("current").GetProperty("wind_kph").GetSingle();
-            MessageBox.Show(jsonResponse);
         }
         public void UpdateCity()
         {

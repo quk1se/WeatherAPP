@@ -27,6 +27,9 @@ namespace WeatherAPP
         public MainWindow()
         {
             InitializeComponent();
+            CustomCity.GotFocus += CityList_GotFocus;
+            CustomCity.LostFocus += CityList_LostFocus;
+            CustomCity.KeyDown += CustomCity_KeyDown;
             StartAPP();
         }
         public void StartAPP()
@@ -59,6 +62,29 @@ namespace WeatherAPP
                 style.city = selectedText;
             }
             style.UpdateCity();
+        }
+
+        private void CustomCity_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                CityList.Items.Add(CustomCity.Text);
+                CustomCity.Text = "Input your city here";
+                MessageBox.Show("City succesfull add to list");
+            }
+        }
+
+        private void CityList_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(CustomCity.Text))
+            {
+                CustomCity.Text = "Input your city";
+            }
+        }
+
+        private void CityList_GotFocus(object sender, RoutedEventArgs e)
+        {
+            CustomCity.Text = "";
         }
     }
 }
