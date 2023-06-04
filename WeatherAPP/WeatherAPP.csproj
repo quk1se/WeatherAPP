@@ -7,4 +7,12 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="humidity.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="humidity.png" />
+  </ItemGroup>
+
 </Project>

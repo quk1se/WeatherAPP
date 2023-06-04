@@ -11,15 +11,18 @@ using System.Windows;
 using System.Net.Http;
 using System.Text.Json;
 using System.Windows.Media.Effects;
+using Microsoft.VisualBasic;
 
 namespace WeatherAPP
 {
     internal class Style
     {
+        private List<string> cityList = new List<string>() {"Kiev", "Kharkov", "Odessa", "Dnepropetrovsk", "Donetsk", "Lviv", "Zaporozhye", "Kryvyi Rih", "Sevastopol", "Nikolaev", "Mariupol",
+        "Luhansk", "Makeevka", "Simferopol", "Chernihiv", "Poltava", "Kherson", "Cherkasy"};
         private string weatherCondition;
         private int temperature;
         private int windSpeed;
-        private int rainChance;
+        private int humidity;
         const string myAPI = "54f747b7fcfa4bd7a0142555230206";
         BitmapImage sunny = new BitmapImage(new Uri(@"D:\appIcons\weatherIcons\sun\sunny.png"));
         BitmapImage moon = new BitmapImage(new Uri(@"D:\appIcons\weatherIcons\moon\moon.png"));
@@ -35,12 +38,13 @@ namespace WeatherAPP
         BitmapImage light = new BitmapImage(new Uri(@"D:\appIcons\weatherIcons\cloud\lightCloud.png"));
         BitmapImage snow = new BitmapImage(new Uri(@"D:\appIcons\weatherIcons\cloud\snowCloud.png"));
         BitmapImage windSpeedImg = new BitmapImage(new Uri(@"D:\appIcons\weatherIcons\windSpeed.png"));
-        BitmapImage rainChanceImg = new BitmapImage(new Uri(@"D:\appIcons\weatherIcons\rainChance.png"));
+        BitmapImage humidityImg = new BitmapImage(new Uri(@"D:\appIcons\weatherIcons\humidity.png"));
         BitmapImage location = new BitmapImage(new Uri(@"D:\appIcons\otherIcons\location.png"));
 
         DateTime dt = DateTime.Now;
         HttpClient client = new HttpClient();
         public MainWindow parent;
+        public string city = "Lugansk";
 
         public string WeatherCondition
         {
@@ -57,10 +61,10 @@ namespace WeatherAPP
             get { return windSpeed; }
             set { windSpeed = value; }
         }
-        public int RainChance
+        public int Humidity
         {
-            get { return rainChance; }
-            set { rainChance = value; }
+            get { return humidity; }
+            set { humidity = value; }
         }
 
         public Style(MainWindow parent)
@@ -84,6 +88,7 @@ namespace WeatherAPP
             txt.FontSize = 52;
             txt.FontFamily = new FontFamily("Arial Black");
             txt.FontStyle = FontStyles.Normal;
+            txt.TextAlignment = TextAlignment.Center;
         }
         public void ShowWeatherConditionInfo(TextBlock txt)
         {
@@ -103,13 +108,13 @@ namespace WeatherAPP
         public void ShowImgWindRain(Image img,Image img2)
         {
             img.Source = windSpeedImg;
-            img2.Source = rainChanceImg;
+            img2.Source = humidityImg;
         }
         public void ShowLocationImg(Image img)
         {
             img.Source = location;
         }
-        public void ShowWindRainInfo(TextBlock txt,TextBlock txt2)
+        public void ShowWindHumidityInfo(TextBlock txt,TextBlock txt2)
         {
             txt.Text = WindSpeed.ToString() + " Kph";
             txt.Background = Brushes.Transparent;
@@ -118,7 +123,7 @@ namespace WeatherAPP
             txt.FontFamily = new FontFamily("Arial Black");
             txt.FontStyle = FontStyles.Normal;
             txt.TextAlignment = TextAlignment.Center;
-            txt2.Text = RainChance.ToString() + " %";
+            txt2.Text = Humidity.ToString() + " %";
             txt2.Background = Brushes.Transparent;
             txt2.Foreground = Brushes.White;
             txt2.FontSize = 22;
@@ -128,10 +133,14 @@ namespace WeatherAPP
         }
         public void SetComboBox(ComboBox cm)
         {
-            cm.Background = Brushes.Transparent;
-            cm.Items.Add(new ComboBoxItem() { Content = "Kiev" });
-            cm.Items.Add(new ComboBoxItem() { Content = "Kherson" });
-            cm.Items.Add(new ComboBoxItem() { Content = "Odessa" });
+            cm.Background = Brushes.Black;
+            cm.Foreground = Brushes.Black;
+            cm.FontSize = 14;
+            cm.FontFamily = new FontFamily("Arial Black");
+            foreach (var newCity in cityList)
+            {
+                cm.Items.Add(newCity);
+            }
         }
         public void SetImg(Image img)
         {
@@ -168,10 +177,17 @@ namespace WeatherAPP
                     if (dt.Hour >= 22 && dt.Hour < 5) image = drizzleMoon;
                     else image = drizzle;
                     break;
+                case "Light drizzle":
+                    if (dt.Hour >= 22 && dt.Hour < 5) image = drizzleMoon;
+                    else image = drizzle;
+                    break;
                 case "Showers":
                     image = rain;
                     break;
                 case "Thunderstorm":
+                    image = light;
+                    break;
+                case "Thundery outbreaks possible":
                     image = light;
                     break;
                 case "Snow":
@@ -188,17 +204,23 @@ namespace WeatherAPP
 
         public void GetInfoAboutWeather()
         {
-            string city = "Kiev";
-            string apiUrl = $"https://api.weatherapi.com/v1/forecast.json?key={myAPI}&q={city}&days=1";
+            string apiUrl = $"https://api.weatherapi.com/v1/forecast.json?key={myAPI}&q={city}&days=0";
             HttpResponseMessage response = client.GetAsync(apiUrl).Result;
             string jsonResponse = response.Content.ReadAsStringAsync().Result;
             JsonDocument doc = JsonDocument.Parse(jsonResponse);
             WeatherCondition = doc.RootElement.GetProperty("current").GetProperty("condition").GetProperty("text").GetString();
             Temperature = (int)doc.RootElement.GetProperty("current").GetProperty("temp_c").GetSingle();
-            RainChance = (int)doc.RootElement.GetProperty("current").GetProperty("precip_mm").GetSingle();
+            Humidity = (int)doc.RootElement.GetProperty("current").GetProperty("humidity").GetSingle();
             WindSpeed = (int)doc.RootElement.GetProperty("current").GetProperty("wind_kph").GetSingle();
-            MessageBox.Show(WeatherCondition);
+            MessageBox.Show(jsonResponse);
         }
-        
+        public void UpdateCity()
+        {
+            GetInfoAboutWeather();
+            ShowTemperatureInfo(parent.Temperature);
+            ShowWeatherConditionInfo(parent.WeatherCondition);
+            ShowWindHumidityInfo(parent.WindInfo, parent.HumidityInfo);
+            SetImg(parent.WeatherConditionImg);
+        }
     }
 }

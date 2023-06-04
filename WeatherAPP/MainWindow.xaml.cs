@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -45,9 +46,19 @@ namespace WeatherAPP
             style.ShowTemperatureInfo(Temperature);
             style.ShowWeatherConditionInfo(WeatherCondition);
             style.ShowImgWindRain(WindSpeed, RainChance);
-            style.ShowWindRainInfo(WindInfo, RainInfo);
+            style.ShowWindHumidityInfo(WindInfo, HumidityInfo);
             style.SetComboBox(CityList);
             style.ShowLocationImg(LocationImg);
+        }
+
+        private void CityList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (CityList.SelectedItem != null)
+            {
+                string selectedText = CityList.SelectedItem.ToString();
+                style.city = selectedText;
+            }
+            style.UpdateCity();
         }
     }
 }
