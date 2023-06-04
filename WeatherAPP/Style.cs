@@ -18,7 +18,7 @@ namespace WeatherAPP
     internal class Style
     {
         public List<string> cityList = new List<string>() {"Kiev", "Kharkov", "Odessa", "Dnepropetrovsk", "Donetsk", "Lviv", "Zaporozhye", "Kryvyi Rih", "Sevastopol", "Nikolaev", "Mariupol",
-        "Luhansk", "Makeevka", "Simferopol", "Chernihiv", "Poltava", "Kherson", "Cherkasy","asdas"};
+        "Luhansk", "Makeevka", "Simferopol", "Chernihiv", "Poltava", "Kherson", "Cherkasy"};
         private string weatherCondition;
         private int temperature;
         private int windSpeed;
