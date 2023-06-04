@@ -27,7 +27,7 @@ namespace WeatherAPP
         public MainWindow()
         {
             InitializeComponent();
-            CustomCity.GotFocus += CityList_GotFocus;
+            CustomCity.GotFocus += CustomCity_GotFocus;
             StartAPP();
         }
         public void StartAPP()
@@ -51,7 +51,6 @@ namespace WeatherAPP
             style.SetComboBox(CityList);
             style.ShowLocationImg(LocationImg);
         }
-
         private void CityList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (CityList.SelectedItem != null)
@@ -68,20 +67,22 @@ namespace WeatherAPP
             {
                 style.cityList.Add(CustomCity.Text);
                 CityList.Items.Add(CustomCity.Text);
-                CustomCity.Text = CustomCity.Text;
-                MessageBox.Show("City succesfull add to list");
+                MessageBox.Show("City succesfull add to list","Succesfull", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else if(e.Key == Key.Enter && style.cityList.Contains(CustomCity.Text))
             {
-                CustomCity.Text = CustomCity.Text;
-                MessageBox.Show("City already in list");
+                MessageBox.Show("City already in list","Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
-        private void CityList_GotFocus(object sender, RoutedEventArgs e)
+        private void CustomCity_GotFocus(object sender, RoutedEventArgs e)
+        {
+            CustomCity.Text = "";
+        }
+
+        private void CustomCity_LostFocus(object sender, RoutedEventArgs e)
         {
             CustomCity.Text = "Input your city";
         }
-
     }
 }

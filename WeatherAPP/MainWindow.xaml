@@ -27,8 +27,8 @@
         <TextBlock x:Name="WindInfo" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="50" Margin="17,443,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="95"><Run Text="WindSpeedInfo"/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
         <TextBlock x:Name="HumidityInfo" Grid.ColumnSpan="4" HorizontalAlignment="Left" Margin="464,443,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="96"><Run Text="RainChanceInfo"/><LineBreak/><Run/></TextBlock>
         <Image x:Name="LocationImg" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="25" Margin="17,31,0,0" VerticalAlignment="Top" Width="25"/>
-        <ComboBox x:Name="CityList" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="54,33,0,0" VerticalAlignment="Top" Width="100" Background="Black" GotFocus="CityList_GotFocus"/>
-        <TextBox x:Name="CustomCity" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="17,66,0,0" TextWrapping="Wrap" Text="Input your city" VerticalAlignment="Top" Width="137" Height="22" Background="#00000000" Foreground="White" FontSize="14" FontFamily="Arial Black" BorderBrush="White" KeyDown="CustomCity_KeyDown"/>
+        <ComboBox x:Name="CityList" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="54,33,0,0" VerticalAlignment="Top" Width="100" Background="Black" SelectionChanged="CityList_SelectionChanged"/>
+        <TextBox x:Name="CustomCity" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="17,66,0,0" TextWrapping="Wrap" Text="Input your city" VerticalAlignment="Top" Width="137" Height="22" Background="#00000000" Foreground="White" FontSize="14" FontFamily="Arial Black" BorderBrush="White" KeyDown="CustomCity_KeyDown" GotFocus="CustomCity_GotFocus" LostFocus="CustomCity_LostFocus"/>
 
     </Grid>
 </Window>
