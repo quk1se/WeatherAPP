@@ -35,7 +35,7 @@ namespace WeatherAPP
             #region Window style
             this.Width = 580;
             this.Height = 820;
-            this.Icon = new BitmapImage(new Uri(@"D:\appIcons\iconApp\icon.ico", UriKind.RelativeOrAbsolute));
+            this.Icon = new BitmapImage(new Uri(@"D:\itstep\winforms\WeatherAPP\WeatherAPP\appIcons\iconApp\icon.ico", UriKind.RelativeOrAbsolute));
             this.Title = "Weather APP";
             this.ResizeMode = ResizeMode.NoResize;
             #endregion
@@ -50,6 +50,9 @@ namespace WeatherAPP
             style.ShowWindHumidityInfo(WindInfo, HumidityInfo);
             style.SetComboBox(CityList);
             style.ShowLocationImg(LocationImg);
+            style.SetMaxMinTemp(MaxMinTempImg);
+            style.ShowMaxMinTempInfo(MaxTempInfo,MinTempInfo);
+            style.ShowAllTimeBtns(Btn00);
         }
         private void CityList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -57,7 +60,9 @@ namespace WeatherAPP
             {
                 string selectedText = CityList.SelectedItem.ToString();
                 style.city = selectedText;
+                style.Time = DateTime.Now.TimeOfDay.ToString(@"hh\:mm");
             }
+            style.GetInfoAboutWeather();
             style.UpdateCity();
         }
 
@@ -83,6 +88,13 @@ namespace WeatherAPP
         private void CustomCity_LostFocus(object sender, RoutedEventArgs e)
         {
             CustomCity.Text = "Input your city";
+        }
+
+        private void Btn00_Click(object sender, RoutedEventArgs e)
+        {
+            style.Time = Btn00.Content.ToString();
+            style.GetInfoAboutWeatherWithTime();
+            style.UpdateCity();
         }
     }
 }

@@ -18,17 +18,21 @@
             <ColumnDefinition Width="0*"/>
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
-        <TextBlock x:Name="DateInfo" HorizontalAlignment="Left" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="222" Width="250" Grid.Column="1" TextAlignment="Center" Margin="163,21,0,0"/>
-        <Image x:Name="WeatherConditionImg" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="174" Margin="200,132,0,0" VerticalAlignment="Top" Width="175"/>
-        <TextBlock x:Name="Temperature" HorizontalAlignment="Left" Margin="201,305,0,0" TextWrapping="Wrap" Text="Temperature" VerticalAlignment="Top" Height="72" Width="174" Grid.Column="1"/>
-        <TextBlock x:Name="WeatherCondition" HorizontalAlignment="Left" Margin="157,365,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="154" Width="262" Grid.Column="1"><Run Text="WeatherCondition"/><LineBreak/><Run/></TextBlock>
+        <TextBlock x:Name="DateInfo" HorizontalAlignment="Left" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="76" Width="448" Grid.Column="1" TextAlignment="Center" Margin="64,21,0,0"/>
+        <Image x:Name="WeatherConditionImg" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="174" Margin="197,132,0,0" VerticalAlignment="Top" Width="175"/>
+        <TextBlock x:Name="Temperature" HorizontalAlignment="Left" Margin="198,305,0,0" TextWrapping="Wrap" Text="Temperature" VerticalAlignment="Top" Height="72" Width="174" Grid.Column="1"/>
+        <TextBlock x:Name="WeatherCondition" HorizontalAlignment="Left" Margin="114,365,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="128" Width="342" Grid.Column="1"><Run Text="WeatherCondition"/><LineBreak/><Run/></TextBlock>
         <Image x:Name="WindSpeed" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="60" Margin="34,377,0,0" VerticalAlignment="Top" Width="60"/>
         <Image x:Name="RainChance" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="60" Margin="479,377,0,0" VerticalAlignment="Top" Width="60"/>
         <TextBlock x:Name="WindInfo" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="50" Margin="17,443,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="95"><Run Text="WindSpeedInfo"/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
         <TextBlock x:Name="HumidityInfo" Grid.ColumnSpan="4" HorizontalAlignment="Left" Margin="464,443,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="96"><Run Text="RainChanceInfo"/><LineBreak/><Run/></TextBlock>
-        <Image x:Name="LocationImg" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="25" Margin="17,31,0,0" VerticalAlignment="Top" Width="25"/>
-        <ComboBox x:Name="CityList" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="54,33,0,0" VerticalAlignment="Top" Width="100" Background="Black" SelectionChanged="CityList_SelectionChanged"/>
-        <TextBox x:Name="CustomCity" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="17,66,0,0" TextWrapping="Wrap" Text="Input your city" VerticalAlignment="Top" Width="137" Height="22" Background="#00000000" Foreground="White" FontSize="14" FontFamily="Arial Black" BorderBrush="White" KeyDown="CustomCity_KeyDown" GotFocus="CustomCity_GotFocus" LostFocus="CustomCity_LostFocus"/>
+        <Image x:Name="LocationImg" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="25" Margin="17,97,0,0" VerticalAlignment="Top" Width="25"/>
+        <ComboBox x:Name="CityList" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="54,99,0,0" VerticalAlignment="Top" Width="100" SelectionChanged="CityList_SelectionChanged" Background="Black" Height="27"/>
+        <TextBox x:Name="CustomCity" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="17,132,0,0" TextWrapping="Wrap" Text="Input your city" VerticalAlignment="Top" Width="137" Height="22" Background="#00000000" Foreground="White" FontSize="14" FontFamily="Arial Black" BorderBrush="White" KeyDown="CustomCity_KeyDown" GotFocus="CustomCity_GotFocus" LostFocus="CustomCity_LostFocus"/>
+        <Image x:Name="MaxMinTempImg" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="60" Margin="258,481,0,0" VerticalAlignment="Top" Width="60"/>
+        <TextBlock x:Name="MaxTempInfo" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="60" Margin="168,498,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90"><Run Text="MaxTemp"/><LineBreak/><Run/></TextBlock>
+        <TextBlock x:Name="MinTempInfo" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="60" Margin="319,498,0,0" TextWrapping="Wrap" Text="MinTemp" VerticalAlignment="Top" Width="90"/>
+        <Button x:Name="Btn00" Content="02:00" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="90" Margin="20,549,0,0" VerticalAlignment="Top" Width="90" BorderBrush="#00707070" Foreground="#FFFF0404" FontFamily="Arial Black" FontSize="18" FontStyle="Italic" Background="White" Click="Btn00_Click"/>
 
     </Grid>
 </Window>
