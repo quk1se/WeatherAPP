@@ -51,8 +51,8 @@ namespace WeatherAPP
             style.SetComboBox(CityList);
             style.ShowLocationImg(LocationImg);
             style.SetMaxMinTemp(MaxMinTempImg);
-            style.ShowMaxMinTempInfo(MaxTempInfo,MinTempInfo);
-            style.ShowAllTimeBtns(Btn00);
+            style.ShowMaxMinTempInfo(MaxTempInfo, MinTempInfo);
+            style.ShowAllTimeBtns(Btn00, Btn03, Btn06, Btn09, Btn12, Btn15, Btn18, Btn21);
         }
         private void CityList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -72,11 +72,11 @@ namespace WeatherAPP
             {
                 style.cityList.Add(CustomCity.Text);
                 CityList.Items.Add(CustomCity.Text);
-                MessageBox.Show("City succesfull add to list","Succesfull", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("City succesfull add to list", "Succesfull", MessageBoxButton.OK, MessageBoxImage.Information);
             }
-            else if(e.Key == Key.Enter && style.cityList.Contains(CustomCity.Text))
+            else if (e.Key == Key.Enter && style.cityList.Contains(CustomCity.Text))
             {
-                MessageBox.Show("City already in list","Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("City already in list", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -93,6 +93,62 @@ namespace WeatherAPP
         private void Btn00_Click(object sender, RoutedEventArgs e)
         {
             style.Time = Btn00.Content.ToString();
+            style.GetInfoAboutWeatherWithTime();
+            style.UpdateCity();
+        }
+
+        private void ResetTime_Click(object sender, RoutedEventArgs e)
+        {
+            style.Time = DateTime.Now.ToString("HH:mm");
+            style.GetInfoAboutWeather();
+            style.UpdateCity();
+        }
+
+        private void Btn03_Click(object sender, RoutedEventArgs e)
+        {
+            style.Time = Btn03.Content.ToString();
+            style.GetInfoAboutWeatherWithTime();
+            style.UpdateCity();
+        }
+
+        private void Btn12_Click(object sender, RoutedEventArgs e)
+        {
+            style.Time = Btn12.Content.ToString();
+            style.GetInfoAboutWeatherWithTime();
+            style.UpdateCity();
+        }
+
+        private void Btn15_Click(object sender, RoutedEventArgs e)
+        {
+            style.Time = Btn15.Content.ToString();
+            style.GetInfoAboutWeatherWithTime();
+            style.UpdateCity();
+        }
+
+        private void Btn18_Click(object sender, RoutedEventArgs e)
+        {
+            style.Time = Btn18.Content.ToString();
+            style.GetInfoAboutWeatherWithTime();
+            style.UpdateCity();
+        }
+
+        private void Btn21_Click(object sender, RoutedEventArgs e)
+        {
+            style.Time = Btn21.Content.ToString();
+            style.GetInfoAboutWeatherWithTime();
+            style.UpdateCity();
+        }
+
+        private void Btn06_Click(object sender, RoutedEventArgs e)
+        {
+            style.Time = Btn06.Content.ToString();
+            style.GetInfoAboutWeatherWithTime();
+            style.UpdateCity();
+        }
+
+        private void Btn09_Click(object sender, RoutedEventArgs e)
+        {
+            style.Time = Btn09.Content.ToString();
             style.GetInfoAboutWeatherWithTime();
             style.UpdateCity();
         }
