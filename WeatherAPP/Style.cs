@@ -30,7 +30,6 @@ namespace WeatherAPP
         private int minTemp;
         private string time;
         public string dateWithTime = DateTime.Now.ToString("yyyy-MM-dd");
-        private string dateT = DateTime.Now.Date.ToString();
         const string myAPI = "54f747b7fcfa4bd7a0142555230206";
         BitmapImage sunny = new BitmapImage(new Uri(@"D:\itstep\winforms\WeatherAPP\WeatherAPP\appIcons\weatherIcons\sun\sunny.png"));
         BitmapImage moon = new BitmapImage(new Uri(@"D:\itstep\winforms\WeatherAPP\WeatherAPP\appIcons\weatherIcons\moon\moon.png"));
@@ -95,49 +94,6 @@ namespace WeatherAPP
         public Style(MainWindow parent)
         {
             this.parent = parent;
-        }
-        public void ShowAllTimeBtns(Button btn1,Button btn2,Button btn3, Button btn4, Button btn5, Button btn6, Button btn7, Button btn8)
-        {
-            Image newPict = new Image();
-            SetImgForTimeBtn(newPict,btn1);
-            ImageBrush nulNul = new ImageBrush();
-            nulNul.ImageSource = newPict.Source;
-            btn1.Background = nulNul;
-
-            SetImgForTimeBtn(newPict, btn2);
-            nulNul = new ImageBrush();
-            nulNul.ImageSource = newPict.Source;
-            btn2.Background = nulNul;
-
-            SetImgForTimeBtn(newPict, btn3);
-            nulNul = new ImageBrush();
-            nulNul.ImageSource = newPict.Source;
-            btn3.Background = nulNul;
-
-            SetImgForTimeBtn(newPict, btn4);
-            nulNul = new ImageBrush();
-            nulNul.ImageSource = newPict.Source;
-            btn4.Background = nulNul;
-
-            SetImgForTimeBtn(newPict, btn5);
-            nulNul = new ImageBrush();
-            nulNul.ImageSource = newPict.Source;
-            btn5.Background = nulNul;
-
-            SetImgForTimeBtn(newPict, btn6);
-            nulNul = new ImageBrush();
-            nulNul.ImageSource = newPict.Source;
-            btn6.Background = nulNul;
-
-            SetImgForTimeBtn(newPict, btn7);
-            nulNul = new ImageBrush();
-            nulNul.ImageSource = newPict.Source;
-            btn7.Background = nulNul;
-
-            SetImgForTimeBtn(newPict, btn8);
-            nulNul = new ImageBrush();
-            nulNul.ImageSource = newPict.Source;
-            btn8.Background = nulNul;
         }
         public void ShowDate(TextBlock txt)
         {
@@ -262,6 +218,10 @@ namespace WeatherAPP
                     if (dt.Hour >= 22 || dt.Hour < 5) image = drizzleMoon;
                     else image = overcast;
                     break;
+                case "Patchy rain possible":
+                    if (dt.Hour >= 22 || dt.Hour < 5) image = drizzleMoon;
+                    else image = overcast;
+                    break;
                 case "Mist":
                     if (dt.Hour >= 22 || dt.Hour < 5) image = mistMoon;
                     else image = mist;
@@ -278,80 +238,21 @@ namespace WeatherAPP
                     if (dt.Hour >= 22 || dt.Hour < 5) image = drizzleMoon;
                     else image = drizzle;
                     break;
+                case "Patchy light drizzle":
+                    if (dt.Hour >= 22 || dt.Hour < 5) image = drizzleMoon;
+                    else image = drizzle;
+                    break;
+                case "Light rain shower":
+                    if (dt.Hour >= 22 || dt.Hour < 5) image = rain;
+                    else image = rain;
+                    break;
                 case "Showers":
                     image = rain;
                     break;
-                case "Thunderstorm":
-                    image = light;
+                case "Moderate rain":
+                    image = rain;
                     break;
-                case "Patchy light rain with thunder":
-                    image = rainThunder;
-                    break;
-                case "Thundery outbreaks possible":
-                    image = light;
-                    break;
-                case "Snow":
-                    image = snow;
-                    break;
-                case "Blizzard":
-                    image = snow;
-                    break;
-                default:
-                    break;
-            }
-            img.Source = image;
-        }
-        public void SetImgForTimeBtn(Image img, Button btn)
-        {
-            string btnHours = btn.Content.ToString();
-            int hours = int.Parse(btnHours.Substring(0,2));
-            if (hours == 0) hours = 24;
-            BitmapImage image = null;
-            switch (WeatherCondition)
-            {
-                case "Sunny":
-                    if (hours >= 22 || hours < 5) image = moon;
-                    else image = sunny;
-                    break;
-                case "Clear":
-                    if (hours >= 22 || hours < 5) image = moon;
-                    else image = sunny;
-                    break;
-                case "Partly cloudy":
-                    if (hours >= 22 || hours < 5) image = partlyCloudMoon;
-                    else image = partlyCloudy;
-                        break;
-                case "Cloudy":
-                    image = cloudy;
-                    break;
-                case "Overcast":
-                    image = overcast;
-                    break;
-                case "Light rain":
-                    if (hours >= 22 || hours < 5) image = drizzleMoon;
-                    else image = overcast;
-                    break;
-                case "Patchy light rain":
-                    if (hours >= 22 || hours < 5) image = drizzleMoon;
-                    else image = overcast;
-                    break;
-                case "Mist":
-                    if (hours >= 22 || hours < 5) image = mistMoon;
-                    else image = mist;
-                    break;
-                case "Rain":
-                    if (hours >= 22 || hours < 5) image = drizzleMoon;
-                    else image = drizzle;
-                    break;
-                case "Drizzle":
-                    if (hours >= 22 || hours < 5) image = drizzleMoon;
-                    else image = drizzle;
-                    break;
-                case "Light drizzle":
-                    if (hours >= 22 || hours < 5) image = drizzleMoon;
-                    else image = drizzle;
-                    break;
-                case "Showers":
+                case "Moderate or heavy rain shower":
                     image = rain;
                     break;
                 case "Thunderstorm":
@@ -407,11 +308,11 @@ namespace WeatherAPP
                     Temperature = (int)hourData.GetProperty("temp_c").GetDouble();
                     Humidity = (int)hourData.GetProperty("humidity").GetDouble();
                     WindSpeed = (int)hourData.GetProperty("wind_kph").GetDouble();
+                    WeatherCondition = hourData.GetProperty("condition").GetProperty("text").GetString();
                     break; 
                 }
             }
             dateWithTime = DateTime.Now.ToString("yyyy-MM-dd");
-            MessageBox.Show(jsonResponse);
         }
         public void UpdateCity()
         {
@@ -422,8 +323,6 @@ namespace WeatherAPP
             SetImg(parent.WeatherConditionImg);
             SetMaxMinTemp(parent.MaxMinTempImg);
             ShowMaxMinTempInfo(parent.MaxTempInfo, parent.MinTempInfo);
-            ShowAllTimeBtns(parent.Btn00,parent.Btn03, parent.Btn06, parent.Btn09, parent.Btn12, parent.Btn15, parent.Btn18, parent.Btn21);
-            
         }
     }
 }

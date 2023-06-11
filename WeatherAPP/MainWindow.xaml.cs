@@ -52,7 +52,6 @@ namespace WeatherAPP
             style.ShowLocationImg(LocationImg);
             style.SetMaxMinTemp(MaxMinTempImg);
             style.ShowMaxMinTempInfo(MaxTempInfo, MinTempInfo);
-            style.ShowAllTimeBtns(Btn00, Btn03, Btn06, Btn09, Btn12, Btn15, Btn18, Btn21);
         }
         private void CityList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
