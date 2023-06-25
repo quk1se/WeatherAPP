@@ -89,12 +89,11 @@ namespace WeatherAPP
             set { time = value; }
         }
 
-
-
         public Style(MainWindow parent)
         {
             this.parent = parent;
         }
+
         public void ShowDate(TextBlock txt)
         {
             txt.Background = Brushes.Transparent;
